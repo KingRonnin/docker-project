@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-api",
+  "version": "1.0.0",
+  "description": "Docker-Project using NodeJS API with Express and MySQL",
+  "main": "index.js",
+  "type" : "module",
+  "scripts": {
+    "start:dev": "NODE_ENV=dev nodemon src/index.js",
+    "start:prod": "NODE_ENV=prod node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "Express",
+    "MySQL",
+    "API"
+  ],
+  "author": "Ronaldo Chua III",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "ip": "^2.0.1",
+    "mysql": "^2.18.1",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
