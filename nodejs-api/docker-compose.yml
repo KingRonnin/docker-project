@@ -21,8 +21,8 @@ services:
       networks:
         - internalnet
 
-  nodeapp:
-      container_name: nodeappcontainer
+  nodeapp1:
+      container_name: nodeappcontainer1
       build: .
       image: nodeapp:v1
       volumes:
@@ -32,7 +32,7 @@ services:
       expose:
         - 3000
       environment:
-        DB_HOST: mysql
+        DB_HOST: mysqldb
         DB_PORT: 3306
         DB_USER: 'admin'
         DB_PASSWORD: 'password'
@@ -40,6 +40,32 @@ services:
         DB_CONNECTION_LIMIT: 20
         SERVICE_TAGS: prod
         SERVICE_NAME: nodeappservice
+        SERVER_PORT: 3000
+      depends_on:
+        - mysqldb
+      networks:
+        - internalnet
+
+  nodeapp2:
+      container_name: nodeappcontainer2
+      build: .
+      image: nodeapp:v1
+      volumes:
+        - $HOME/nodeapp:/code
+      ports:
+        - 3001:3000
+      expose:
+        - 3000
+      environment:
+        DB_HOST: mysqldb
+        DB_PORT: 3306
+        DB_USER: 'admin'
+        DB_PASSWORD: 'password'
+        DB_NAME: patientsdb
+        DB_CONNECTION_LIMIT: 20
+        SERVICE_TAGS: prod
+        SERVICE_NAME: nodeappservice
+        SERVER_PORT: 3000
       depends_on:
         - mysqldb
       networks:

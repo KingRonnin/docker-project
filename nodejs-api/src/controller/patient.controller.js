@@ -23,6 +23,18 @@ export const getPatients = (req, res) => {
     });
 };
 
+/**
+ * Creates a new patient record in the database.
+ *
+ * This function handles the HTTP request to create a new patient. It logs the creation attempt, executes a database query to insert the patient data, and responds with the appropriate status and message. If the creation is successful, it returns the newly created patient's information; otherwise, it logs the error and returns a 500 status.
+ *
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @param {Object} req.query - The patient data to be created, including first name, last name, email, phone, address, and diagnosis.
+ * @param {Function} res.status - Sets the HTTP status code for the response.
+ * @param {Function} res.send - Sends the response back to the client.
+ * @returns {void}
+ */
 export const createPatient = (req, res) => {
     log.info(`${req.method}, creating patient`);
     database.query(QUERY.CREATE_PATIENT_PROCEDURE, Object.values((req.query)), (error, results) => {
@@ -36,6 +48,7 @@ export const createPatient = (req, res) => {
         }
     });
 };
+
 
 export const getPatient = (req, res) => {
     log.info(`${req.method}, fetching patient`);
