@@ -49,6 +49,19 @@ export const getPatient = (req, res) => {
     });
 };
 
+/**
+ * Updates a patient's information in the database.
+ *
+ * This function handles the HTTP request to update a patient's details. It first checks if the patient exists by querying the database. If found, it updates the patient's information; otherwise, it returns a 404 error. In case of any database errors during the update, a 500 error is returned.
+ *
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @param {string} req.params.id - The ID of the patient to be updated.
+ * @param {Object} req.query - The new patient data to be updated.
+ * @param {Function} res.status - Sets the HTTP status code for the response.
+ * @param {Function} res.send - Sends the response back to the client.
+ * @returns {void}
+ */
 export const updatePatient = (req, res) => {
     log.info(`${req.method}, fetching patient`);
     database.query(QUERY.SELECT_PATIENT, [req.params.id], (error, results) => {

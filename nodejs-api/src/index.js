@@ -15,6 +15,5 @@ app.use(express.json());
 
 app.use('/patients', patientRoutes);
 app.get('/', (req, res) => {res.send( new Response(httpStatus.OK.code, httpStatus.OK.status, 'Patient API, v1 - All systems Working') ) });
-app.all('*', (req, res) => {res.status(httpStatus.NOT_FOUND.code)
-    .send( new Response(httpStatus.NOT_FOUND.code, httpStatus.NOT_FOUND.status, 'Patient API, v1 - Route does not exist') ) });
+app.all('*', (req, res) => {res.status(httpStatus.NOT_FOUND.code).send( new Response(httpStatus.NOT_FOUND.code, httpStatus.NOT_FOUND.status, 'Patient API, v1 - Route does not exist') ) });
 app.listen(PORT, () => log.info(`Server running on port: ${PORT}`));
